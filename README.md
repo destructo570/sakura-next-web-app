@@ -1,6 +1,6 @@
 # 🌸 Sakura 
 
-An open-source web application built with Next.js 14.
+An open-source social media web app built with Next.js 14.
 
 ### Features to be implemented
 
