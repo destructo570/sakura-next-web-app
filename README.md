@@ -1,4 +1,4 @@
-# 🌸 Sakura - Social media web app built with Next.Js 14
+# 🌸 Sakura - Social media web app
 
 An open-source social media web app built with Next.js 14.
 
@@ -9,7 +9,7 @@ An open-source social media web app built with Next.js 14.
 - [ ] Database on turso
 - [ ] Manage database using Drizzle
 - [ ] Validation using zod
-- [ ] Creating posts, posting pictures;
+- [ ] Creating posts, posting pictures
 - [ ] File uploads
 - [ ] Follow and connect with other people
 - [ ] Direct messaging
