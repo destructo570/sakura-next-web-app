@@ -1,2 +1,25 @@
-## Sakura - Social media application built with NextJS 14
+# 🌸 Sakura 
 
+An open-source web application built with Next.js 14.
+
+### Features to be implemented
+
+- [ ] User authentication
+- [ ] User profile management
+- [ ] Database on turso
+- [ ] Manage database using Drizzle
+- [ ] Validation using zod
+- [ ] Creating posts, posting pictures;
+- [ ] File uploads
+- [ ] Follow and connect with other people
+- [ ] Direct messaging
+
+
+### Tech Stack
+- Next.js 14
+- Drizzle ORM
+- Turso for SQLite database
+- Zod for validation
+- tRPC
+- TypeScript
+- Shadcn UI
