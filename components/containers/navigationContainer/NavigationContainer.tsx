@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import { Home, Search, PlusSquare, Heart, User } from "lucide-react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { NavTabs, navigationRoutes } from "@/constants/Navigation";
+import { navigationRoutes } from "@/constants/Navigation";
+import { useRouter } from "next/navigation";
 
 const NavigationContainer = () => {
   const [value, setValue] = React.useState("home");
+  const router = useRouter();
 
   const getCurrentColor = (tab: string) => {
     return `${value === tab ? "white" : "#3f3f46"}`;
@@ -26,14 +27,21 @@ const NavigationContainer = () => {
       );
     });
   };
-  
+
+  const onToggleChange = (value: string) => {
+    if (value) {
+      setValue(value);
+      router.push(value);
+    }
+  };
+
   return (
     <div className="flex gap-2 justify-evenly absolute bottom-0 w-full min-h-16 backdrop-blur-md">
       <ToggleGroup
         type="single"
         className="w-full"
         value={value}
-        onValueChange={(value) => setValue(value)}
+        onValueChange={onToggleChange}
       >
         {renderTabs()}
       </ToggleGroup>
