@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/globals/globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import NavigationContainer from "@/components/containers/navigationContainer/NavigationContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <NavigationContainer/>
         </ThemeProvider>
       </body>
     </html>

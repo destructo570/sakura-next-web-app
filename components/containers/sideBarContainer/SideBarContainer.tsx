@@ -1,7 +1,7 @@
 import React from "react";
 
 const SideBarContainer = () => {
-  return <aside className="w-full">SideBarContainer</aside>;
+  return <aside className="hidden md:block w-full">SideBarContainer</aside>;
 };
 
 export default SideBarContainer;
