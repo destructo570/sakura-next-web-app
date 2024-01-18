@@ -19,7 +19,7 @@ const NavigationContainer = () => {
       return (
         <ToggleGroupItem
           value={tab?.value}
-          className={"h-16 w-full my-2 ml-2"}
+          className={"h-14 w-full my-2 ml-2"}
           key={`nav_${tab?.value}`}
         >
           <Icon className="h-6 w-6" color={getCurrentColor(tab?.value)} />
@@ -36,10 +36,10 @@ const NavigationContainer = () => {
   };
 
   return (
-    <div className="flex gap-2 justify-evenly absolute bottom-0 w-full min-h-16 backdrop-blur-md">
+    <div className="flex gap-2 justify-evenly fixed bottom-0 left-0 right-0 sm:min-w-[576px] max-h-16 blur-background">
       <ToggleGroup
         type="single"
-        className="w-full"
+        className="w-full md:max-w-md"
         value={value}
         onValueChange={onToggleChange}
       >

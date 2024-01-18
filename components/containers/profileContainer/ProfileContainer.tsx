@@ -4,13 +4,14 @@ import UserBio from "./UserBio";
 import ProfileActions from "./ProfileActions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileTab } from "@/constants/Profile";
+import PostContainer from "../postContainer/PostContainer";
 
 const ProfileContainer = () => {
   return (
-    <div className="p-4">
+    <div className="h-full">
       <ProfileInfo />
       <UserBio />
-      <p className="text-zinc-500 text-sm">180 followers</p>
+      <p className="text-secondary">180 followers</p>
       <ProfileActions />
       <Tabs defaultValue={ProfileTab.THREADS}>
         <TabsList className="grid w-full grid-cols-3">
@@ -19,13 +20,26 @@ const ProfileContainer = () => {
           <TabsTrigger value={ProfileTab.REPOSTS}>Reposts</TabsTrigger>
         </TabsList>
         <TabsContent value={ProfileTab.THREADS}>
-          <p>This is threads</p>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
         </TabsContent>
         <TabsContent value={ProfileTab.REPLIES}>
-          <p>This is following</p>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
         </TabsContent>
         <TabsContent value={ProfileTab.REPOSTS}>
-          <p>This is reposts</p>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+          <PostContainer/>
+
         </TabsContent>
       </Tabs>
     </div>
