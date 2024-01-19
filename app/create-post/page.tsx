@@ -1,7 +1,12 @@
+import CreatePostContainer from "@/components/containers/createPostContainer/CreatePostContainer";
 import React from "react";
 
 const CreatePostPage = () => {
-  return <div>Create Post</div>;
+  return (
+    <div>
+      <CreatePostContainer />
+    </div>
+  );
 };
 
 export default CreatePostPage;
