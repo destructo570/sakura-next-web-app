@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "drizzle-kit generate:sqlite",
+    "push": "drizzle-kit push:sqlite"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^0.3.15",
     "@libsql/client": "^0.4.0-pre.7",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -31,6 +34,7 @@
     "drizzle-orm": "^0.29.3",
     "lucide-react": "^0.309.0",
     "next": "14.0.4",
+    "next-auth": "^5.0.0-beta.5",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
@@ -44,7 +48,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
-    "drizzle-kit": "^0.20.12",
+    "dotenv": "^16.3.2",
+    "drizzle-kit": "^0.20.13",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
