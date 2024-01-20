@@ -14,12 +14,14 @@ const ProfileContainer = (props: PropType) => {
 
   return (
     <div className="h-full">
+      <div className="p-4">
       <ProfileInfo user={user} />
       <UserBio />
       <p className="text-secondary">180 followers</p>
       <ProfileActions />
+      </div>
       <Tabs defaultValue={ProfileTab.THREADS}>
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid grid-cols-3 mx-4">
           <TabsTrigger value={ProfileTab.THREADS}>Threads</TabsTrigger>
           <TabsTrigger value={ProfileTab.REPLIES}>Replies</TabsTrigger>
           <TabsTrigger value={ProfileTab.REPOSTS}>Reposts</TabsTrigger>
