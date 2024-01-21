@@ -1,19 +1,25 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import Image from "next/image";
+import { PostType } from "./PostContainer";
+import { UserType } from "../profileContainer/ProfileInfo";
+interface PropType {
+  replies?: PostType[];
+  user?: UserType;
+}
 
-const HasRepliesIndicator = () => {
+const HasRepliesIndicator = (props: PropType) => {
+  const { replies, user } = props;
   return (
-    <div className="flex flex-col h-full w-full justify-center items-center gap-4 rounded-full">
+    <div className="flex flex-col h-full w-full items-center gap-4 rounded-full">
       <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+        <AvatarImage src={user?.image} alt="@shadcn" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
-      <div className="h-full w-1 bg-zinc-800"></div>
+      {/* <div className="h-full w-1 bg-zinc-800"></div>
       <Avatar className="h-6 w-6">
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+        <AvatarImage src={user?.image} alt="@shadcn" />
         <AvatarFallback>CN</AvatarFallback>
-      </Avatar>
+      </Avatar> */}
     </div>
   );
 };
