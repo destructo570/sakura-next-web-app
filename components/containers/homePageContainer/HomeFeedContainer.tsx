@@ -1,8 +1,27 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import PostContainer from "../postContainer/PostContainer";
+import PostContainer, { PostType } from "../postContainer/PostContainer";
+import { db } from "@/database";
+import { posts } from "@/database/schema/posts";
+import { users } from "@/database/schema/users";
+import { eq, desc } from "drizzle-orm";
 
-const HomeFeedContainer = () => {
+const HomeFeedContainer = async () => {
+
+  const post_list = await db.select({
+    id: posts.id,
+    body: posts.body,
+    createdOn: posts.createdOn,
+    user: {
+      id: users.id,
+      name: users.name,
+      image: users.image
+    },
+  })
+  .from(posts)
+  .innerJoin(users, eq(users.id, posts.userId))
+  .orderBy(desc(posts.createdOn))
+
   return (
     <section className="w-full">
       <Tabs defaultValue="for_you">
@@ -11,12 +30,9 @@ const HomeFeedContainer = () => {
           <TabsTrigger value="following">Following</TabsTrigger>
         </TabsList>
         <TabsContent value="for_you">
-          <PostContainer />
-          <PostContainer />
-          <PostContainer />
-          <PostContainer />
-          <PostContainer />
-          <PostContainer />
+        {
+          post_list?.map(item => <PostContainer post={item as PostType} key={item.id}/>)
+        }
         </TabsContent>
         <TabsContent value="following">
           <p>Following</p>
