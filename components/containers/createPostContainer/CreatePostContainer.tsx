@@ -4,9 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Hash, Image as ImageIcon, Vote, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 
-const CreatePostContainer = () => {
+const CreatePostContainer = ({
+  onCreatePost,
+}: {
+  onCreatePost: (formData: React.FormEvent<HTMLFormElement>) => void;
+}) => {
   return (
-    <div className="p-4">
+    <form className="p-4" onSubmit={onCreatePost}>
       <div>
         <div className="flex gap-4 mt-4">
           <div className="flex flex-col justify-center items-center gap-2">
@@ -21,7 +25,7 @@ const CreatePostContainer = () => {
               <h5>vishal.kashi</h5>
               <X size={16} />
             </div>
-            <Textarea placeholder="Start a thread..." />
+            <Textarea placeholder="Start a thread..." name="body" />
             <div className="mt-3 flex gap-4 items-center">
               <ImageIcon size={16} color="#737373" />
               <Hash size={18} color="#737373" />
@@ -44,9 +48,9 @@ const CreatePostContainer = () => {
       </div>
       <div className="flex gap-4 w-full justify-end">
         <Button variant="ghost">Cancel</Button>
-        <Button>Post</Button>
+        <Button type="submit">Post</Button>
       </div>
-    </div>
+    </form>
   );
 };
 
