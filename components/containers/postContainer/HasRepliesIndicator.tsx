@@ -3,12 +3,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PostType } from "./PostContainer";
 import { UserType } from "../profileContainer/ProfileInfo";
 interface PropType {
-  replies?: PostType[];
   user?: UserType;
 }
 
 const HasRepliesIndicator = (props: PropType) => {
-  const { replies, user } = props;
+  const { user } = props;
   return (
     <div className="flex flex-col h-full w-full items-center gap-4 rounded-full">
       <Avatar>

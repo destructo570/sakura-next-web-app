@@ -7,12 +7,11 @@ import { posts } from "@/database/schema/posts";
 import { eq } from "drizzle-orm";
 import { users } from "@/database/schema/users";
 
-
 const ProfilePage = async () => {
   const session = await auth();
+
   if (!session || !session?.user?.id)
     redirect("/api/auth/signin?callbackUrl=/profile");
-
   const post_list = await db
     .select({
       id: posts.id,
@@ -21,22 +20,15 @@ const ProfilePage = async () => {
       user: {
         id: users.id,
         name: users.name,
-        image: users.image
+        image: users.image,
       },
-      // likes: likes
     })
     .from(posts)
     .where(eq(posts.userId, session.user.id))
-    .innerJoin(users, eq(users.id, session.user.id))
-    // .innerJoin(likes, eq(likes.postId, posts.id))
-    // .groupBy(likes.id)
-    // .leftJoin(likes, eq(likes.postId, posts.id)).as('likes')
-
-    console.log(post_list);
-
+    .innerJoin(users, eq(users.id, session.user.id));
   return (
     <div className="h-full">
-      <ProfileContainer user={session.user} posts={post_list}/>
+      <ProfileContainer user={session.user} posts_list={post_list} />
     </div>
   );
 };
