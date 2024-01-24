@@ -7,7 +7,10 @@ import { posts } from "@/database/schema/posts";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 
-//Create Post
+//======================
+//==== Create Post =====
+//======================
+
 const CreatePostSchema = z.object({
   body: z.string(),
 });
@@ -19,7 +22,7 @@ const _createPost = async (post: CreatePostSchema) => {
 
   if (!session) return { message: "User is not authenticated" };
 
-  //Todo: Other validations regarding a post
+  if(!post.body?.trim()?.length) return;
 
   await db.insert(posts).values({
     body: post.body,
@@ -29,7 +32,10 @@ const _createPost = async (post: CreatePostSchema) => {
   redirect("/home");
 };
 
-//Delete Post
+//======================
+//==== Delete Post =====
+//======================
+
 const DeletePostSchema = z.object({
   id: z.number(),
 });
@@ -38,9 +44,8 @@ type DeletePostSchema = z.infer<typeof DeletePostSchema>;
 
 const _deletePost = async (post: DeletePostSchema) => {
   const session = await auth();
-  console.log(session);
-  console.log(post);
-  if (!session.user.id || !post.id) return;
+  if (!session || !session.user.id || !post.id) return;
+
   await db
     .delete(posts)
     .where(and(eq(posts.userId, session.user.id), eq(posts.id, post.id)));
