@@ -1,12 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-export interface UserType {
-  id?: string | null;
-  name?: string | null;
-  email?: string | null;
-  image?: string;
-}
+import { UserType } from "@/types/interafce";
 
 interface PropType {
   user: UserType | undefined;

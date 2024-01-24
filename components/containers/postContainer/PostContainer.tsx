@@ -1,16 +1,8 @@
 import React from "react";
-import PostHeader from "./PostHeader";
-import PostContent from "./PostContent";
 import PostFooter from "./PostFooter";
 import HasRepliesIndicator from "./HasRepliesIndicator";
-import { UserType } from "../profileContainer/ProfileInfo";
-export interface PostType {
-  id?: number | undefined;
-  body?: string | undefined;
-  likes?: number | undefined;
-  user?: UserType | undefined;
-  replies?: PostType[] | undefined;
-}
+import { PostType } from "@/types/interafce";
+
 interface PostPropType {
   post: PostType;
   onDeletePost: (id: number) => void;
@@ -25,8 +17,19 @@ const PostContainer = (props: PostPropType) => {
         <HasRepliesIndicator user={user} />
       </div>
       <div className="w-full">
-        <PostHeader user={user} />
-        <PostContent body={body} />
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* <Avatar>
+                  <AvatarImage src={user?.image} alt="@shadcn" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar> */}
+            <h5>{user?.name}</h5>
+          </div>
+          <div className="flex gap-2 mr-4 items-center">
+            <p className="text-secondary">22h</p>
+          </div>
+        </div>
+        <div className="mt-2">{body}</div>
         <PostFooter
           replies={0}
           likes={0}

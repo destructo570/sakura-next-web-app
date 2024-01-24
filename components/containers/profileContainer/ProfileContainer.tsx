@@ -1,16 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import ProfileInfo, { UserType } from "./ProfileInfo";
+import ProfileInfo from "./ProfileInfo";
 import UserBio from "./UserBio";
 import ProfileActions from "./ProfileActions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileTab } from "@/constants/Profile";
-import PostContainer, { PostType } from "../postContainer/PostContainer";
+import PostContainer from "../postContainer/PostContainer";
 import { useAction } from "next-safe-action/hooks";
 import { deletePost } from "@/actions/post";
+import { PostType, UserType } from "@/types/interafce";
 
 interface PropType {
-  user: UserType | undefined;
+  user: UserType;
   posts_list: PostType[];
 }
 
@@ -20,13 +21,12 @@ const ProfileContainer = (props: PropType) => {
 
   const { execute } = useAction(deletePost, {
     onSuccess: (_, input) => {
-      setPosts((prev) => prev.filter((item) => item.id !== input.id));
+      setPosts((prev) => prev.filter((item) => item.id !== input.id!));
     },
   });
 
   const onDeletePost = async (postId: number) => {
-    console.log(postId);
-    await execute({ id: postId! });
+    await execute({ id: postId });
   };
 
   return (

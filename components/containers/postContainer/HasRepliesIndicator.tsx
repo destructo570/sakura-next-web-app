@@ -1,7 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { PostType } from "./PostContainer";
-import { UserType } from "../profileContainer/ProfileInfo";
+import { UserType } from "@/types/interafce";
 interface PropType {
   user?: UserType;
 }
