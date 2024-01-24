@@ -1,8 +1,8 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Hash, Image as ImageIcon, Vote, X } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { X } from "lucide-react";
 
 const CreatePostContainer = ({
   onCreatePost,
@@ -26,11 +26,6 @@ const CreatePostContainer = ({
               <X size={16} />
             </div>
             <Textarea placeholder="Start a thread..." name="body" />
-            <div className="mt-3 flex gap-4 items-center">
-              <ImageIcon size={16} color="#737373" />
-              <Hash size={18} color="#737373" />
-              <Vote size={18} color="#737373" />
-            </div>
           </div>
         </div>
         <div className="mt-2 mx-2 flex gap-2 items-center">
