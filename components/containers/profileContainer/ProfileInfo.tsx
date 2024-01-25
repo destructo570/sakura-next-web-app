@@ -1,9 +1,9 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UserType } from "@/types/interafce";
+import { UserType } from "@/database/schema/users";
 
 interface PropType {
-  user: UserType | undefined;
+  user: UserType;
 }
 
 const ProfileInfo = (props: PropType) => {
@@ -17,7 +17,7 @@ const ProfileInfo = (props: PropType) => {
         </div>
         <div>
           <Avatar className="h-16 w-16">
-            <AvatarImage src={user?.image} alt="me" />
+            <AvatarImage src={user?.image ?? ""} alt="me" />
             <AvatarFallback>Me</AvatarFallback>
           </Avatar>
         </div>

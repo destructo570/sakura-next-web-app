@@ -8,3 +8,5 @@ export const posts = sqliteTable("posts", {
     userId: text('userId').references(() => users.id, {onDelete: 'cascade'}),
     createdOn: text("timestamp").default(sql`CURRENT_TIMESTAMP`),
 })
+
+export type PostType = typeof posts;

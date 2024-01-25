@@ -9,6 +9,8 @@ export const users = sqliteTable("user", {
  image: text("image"),
 })
 
+export type UserType = typeof users.$inferSelect;
+
 export const accounts = sqliteTable(
  "account",
  {

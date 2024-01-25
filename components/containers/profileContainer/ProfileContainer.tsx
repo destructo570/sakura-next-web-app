@@ -8,7 +8,8 @@ import { ProfileTab } from "@/constants/Profile";
 import PostContainer from "../postContainer/PostContainer";
 import { useAction } from "next-safe-action/hooks";
 import { deletePost } from "@/actions/post";
-import { PostType, UserType } from "@/types/interafce";
+import { UserType } from "@/database/schema/users";
+import { PostType } from "@/database/schema/posts";
 
 interface PropType {
   user: UserType;
@@ -21,7 +22,7 @@ const ProfileContainer = (props: PropType) => {
 
   const { execute } = useAction(deletePost, {
     onSuccess: (_, input) => {
-      setPosts((prev) => prev.filter((item) => item.id !== input.id!));
+      setPosts((prev) => prev.filter((item) => item.id !== input.id)); //Todo: Fix typescript error
     },
   });
 

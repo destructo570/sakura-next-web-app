@@ -1,10 +1,10 @@
 import React from "react";
 import PostFooter from "./PostFooter";
 import HasRepliesIndicator from "./HasRepliesIndicator";
-import { PostType } from "@/types/interafce";
 
 interface PostPropType {
-  post: PostType;
+  //Todo: Fix typescript
+  post: any;
   onDeletePost: (id: number) => void;
 }
 

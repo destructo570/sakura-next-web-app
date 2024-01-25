@@ -8,3 +8,17 @@ export const getUserInitials = (name: string) => {
     name_arr[0].charAt(0);
   }
 };
+
+export function debounce(func: Function, wait: number, immediate: boolean) {
+  let timeout: ReturnType<typeof setTimeout> | null;
+  return function (this: any) {
+    let context = this,
+      args = arguments;
+    clearTimeout(timeout ?? undefined);
+    if (immediate && !timeout) func.apply(context, args);
+    timeout = setTimeout(function () {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    }, wait);
+  };
+}
