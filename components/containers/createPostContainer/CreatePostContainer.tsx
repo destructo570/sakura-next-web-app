@@ -26,16 +26,16 @@ const CreatePostContainer = ({ user }: { user: UserType }) => {
         <div className="flex gap-4 mt-4">
           <div className="flex flex-col justify-center items-center gap-2">
             <Avatar>
-              <AvatarImage src={user.image ?? ""} alt="@shadcn" />
+              <AvatarImage src={user?.image ?? ""} alt="@shadcn" />
               <AvatarFallback>
-                {getUserInitials(user.name ?? "")}
+                {getUserInitials(user?.name ?? "")}
               </AvatarFallback>
             </Avatar>
             <div className="h-full w-1 bg-zinc-800"></div>
           </div>
           <div className="w-full">
             <div className="flex items-center justify-between">
-              <h5>{user.name}</h5>
+              <h5>{user?.name}</h5>
             </div>
             <Textarea
               className="mt-4"
@@ -47,8 +47,8 @@ const CreatePostContainer = ({ user }: { user: UserType }) => {
         </div>
         <div className="mt-2 mx-2 flex gap-2 items-center">
           <Avatar className="h-6 w-6">
-            <AvatarImage src={user.image ?? ""} alt="@shadcn" />
-            <AvatarFallback>{getUserInitials(user.name ?? "")}</AvatarFallback>
+            <AvatarImage src={user?.image ?? ""} alt="@shadcn" />
+            <AvatarFallback>{getUserInitials(user?.name ?? "")}</AvatarFallback>
           </Avatar>
           <Button
             className="text-zinc-600 font-light hover:bg-transparent"

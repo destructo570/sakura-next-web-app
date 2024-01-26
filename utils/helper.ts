@@ -22,3 +22,7 @@ export function debounce(func: Function, wait: number, immediate: boolean) {
     }, wait);
   };
 }
+
+export const getRedirectUrl = (callbackUrl: string) => {
+  return `/api/auth/signin?callbackUrl=/${callbackUrl}`;
+};
