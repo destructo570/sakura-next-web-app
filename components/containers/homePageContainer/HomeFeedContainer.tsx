@@ -12,6 +12,7 @@ const HomeFeedContainer = async () => {
       id: posts.id,
       body: posts.body,
       createdOn: posts.createdOn,
+      userId: posts.userId,
       user: users,
     })
     .from(posts)

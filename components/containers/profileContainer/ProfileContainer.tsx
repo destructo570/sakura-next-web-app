@@ -1,42 +1,43 @@
 "use client";
 import React, { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
-import UserBio from "./UserBio";
-import ProfileActions from "./ProfileActions";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ProfileTab } from "@/constants/Profile";
 import PostContainer from "../postContainer/PostContainer";
-import { useAction } from "next-safe-action/hooks";
-import { deletePost } from "@/actions/post";
 import { UserType } from "@/database/schema/users";
 import { PostType } from "@/database/schema/posts";
-
+import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
 interface PropType {
   user: UserType;
-  posts_list: PostType[];
+  posts_list: (PostType & UserType)[];
 }
 
 const ProfileContainer = (props: PropType) => {
   const { user, posts_list } = props;
   const [posts, setPosts] = useState(posts_list);
+  const { data: session } = useSession();
 
-  const { execute } = useAction(deletePost, {
-    onSuccess: (_, input) => {
-      setPosts((prev) => prev.filter((item) => item.id !== input.id)); //Todo: Fix typescript error
-    },
-  });
-
-  const onDeletePost = async (postId: number) => {
-    await execute({ id: postId });
+  const onDeleteSuccess = (_: any, input: any) => {
+    setPosts((prev) => prev.filter((item) => item.id !== input.id));
   };
 
   return (
     <div className="h-full">
       <div className="p-4">
         <ProfileInfo user={user} />
-        <UserBio />
+        <p>{"This is my bio. Lorem ipsum dolor solemit"}</p>
         <p className="text-secondary">180 followers</p>
-        <ProfileActions />
+        <div className="flex gap-4 my-4">
+          <Button variant="outline" className="w-full">
+            Follow
+          </Button>
+          {user.id === session?.user.id ? (
+            <Button variant="outline" className="w-full">
+              Edit Profile
+            </Button>
+          ) : null}
+        </div>
       </div>
       <Tabs defaultValue={ProfileTab.THREADS}>
         <TabsList className="grid grid-cols-3 mx-4">
@@ -49,7 +50,7 @@ const ProfileContainer = (props: PropType) => {
             <PostContainer
               post={item}
               key={item.id}
-              onDeletePost={onDeletePost.bind(null, item.id)}
+              onDeleteSuccess={onDeleteSuccess}
             />
           ))}
         </TabsContent>

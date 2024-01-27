@@ -17,11 +17,8 @@ const ProfilePage = async () => {
       id: posts.id,
       body: posts.body,
       createdOn: posts.createdOn,
-      user: {
-        id: users.id,
-        name: users.name,
-        image: users.image,
-      },
+      userId: posts.userId,
+      user: users,
     })
     .from(posts)
     .where(eq(posts.userId, session.user.id))
