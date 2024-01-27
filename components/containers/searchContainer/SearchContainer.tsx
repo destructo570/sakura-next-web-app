@@ -24,9 +24,11 @@ const SearchContainer = () => {
 
   return (
     <div className="p-4 mx-auto">
-      <form className="flex gap-4 " onChange={debounce(onChange, 500, false)}>
-        <Input placeholder="Search for someone" />
-      </form>
+      <Input
+        placeholder="Search for someone"
+        name="search-user"
+        onChange={debounce(onChange, 500, false)}
+      />
       {Array.isArray(result?.data) && result?.data?.length ? (
         result?.data?.map((user) => {
           return <PeopleItem key={user.id} user={user} />;
