@@ -9,17 +9,14 @@ An open-source social media web app built with Next.js 14.
 - [ ] Database on turso
 - [ ] Manage database using Drizzle
 - [ ] Validation using zod
-- [ ] Creating posts, posting pictures
-- [ ] File uploads
+- [ ] Creating posts
 - [ ] Follow and connect with other people
 - [ ] Direct messaging
-
 
 ### Tech Stack
 - Next.js 14
 - Drizzle ORM
 - Turso for SQLite database
 - Zod for validation
-- tRPC
 - TypeScript
 - Shadcn UI
