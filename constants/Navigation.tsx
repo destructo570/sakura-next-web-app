@@ -1,10 +1,10 @@
-import { Home, Search, PlusSquare, Heart, User } from "lucide-react";
+import { Home, Search, PlusSquare, Heart, User, MessageSquareText } from "lucide-react";
 
 export enum NavTabs {
   HOME="home",
   SEARCH="search",
   NEW_POST="create-post",
-  FAVORITE="activity",
+  MESSAGE="message",
   PROFILE="profile"
 }
 
@@ -22,8 +22,8 @@ export const navigationRoutes = [
         icon: PlusSquare,
     },
     {
-        value: NavTabs.FAVORITE,
-        icon: Heart,
+        value: NavTabs.MESSAGE,
+        icon: MessageSquareText,
     },
     {
         value: NavTabs.PROFILE,

@@ -1,13 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { navigationRoutes } from "@/constants/Navigation";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getInitialTabValue } from "@/utils/helper";
 
 const NavigationContainer = () => {
-  const [value, setValue] = React.useState("home");
+  const pathname = usePathname();
   const router = useRouter();
+
+  const [value, setValue] = useState<string>(() => getInitialTabValue(pathname));
 
   const getCurrentColor = (tab: string) => {
     return `${value === tab ? "white" : "#3f3f46"}`;

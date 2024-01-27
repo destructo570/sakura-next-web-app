@@ -1,3 +1,5 @@
+import { NavTabs } from "@/constants/Navigation";
+
 export const getUserInitials = (name: string) => {
   const name_arr = name.split(" ");
   if (!name_arr?.length) return name;
@@ -25,4 +27,15 @@ export function debounce(func: Function, wait: number, immediate: boolean) {
 
 export const getRedirectUrl = (callbackUrl: string) => {
   return `/api/auth/signin?callbackUrl=/${callbackUrl}`;
+};
+
+export const getInitialTabValue = (pathname: string) => {
+  let result;
+  for (const [_, value] of Object.entries(NavTabs)) {
+    if (pathname.includes(value)) {
+      result = value;
+      break;
+    }
+  }
+  return result ?? NavTabs.HOME;
 };
