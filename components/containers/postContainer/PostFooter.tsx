@@ -16,7 +16,7 @@ const PostFooter = (props: PropType) => {
       <div className="flex gap-4 items-center icon-container">
         <Heart size={22} className="cursor-pointer icon" />
         <Send size={20} className="cursor-pointer" />
-        {session.user.id === post.userId ? (
+        {session?.user?.id === post?.userId ? (
           <Trash2
             size={20}
             className="cursor-pointer"
