@@ -1,5 +1,4 @@
 import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PostContainer from "../postContainer/PostContainer";
 import { db } from "@/database";
 import { posts } from "@/database/schema/posts";
@@ -21,20 +20,14 @@ const HomeFeedContainer = async () => {
 
   return (
     <section className="w-full">
-      <Tabs defaultValue="for_you">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="for_you">For you</TabsTrigger>
-          <TabsTrigger value="following">Following</TabsTrigger>
-        </TabsList>
-        <TabsContent value="for_you">
-          {post_list?.map((item) => (
-            <PostContainer post={item} key={item.id} />
-          ))}
-        </TabsContent>
-        <TabsContent value="following">
-          <p>Following</p>
-        </TabsContent>
-      </Tabs>
+      <header className="flex justify-center">
+        <h3>Home</h3>
+      </header>
+      <div className="mt-4">
+        {post_list?.map((item) => (
+          <PostContainer post={item} key={item.id} />
+        ))}
+      </div>
     </section>
   );
 };
