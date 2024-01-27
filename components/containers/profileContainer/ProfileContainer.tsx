@@ -24,14 +24,16 @@ const ProfileContainer = (props: PropType) => {
 
   return (
     <div className="h-full">
-      <div className="p-4">
+      <div className="p-4 divider">
         <ProfileInfo user={user} />
         <p>{"This is my bio. Lorem ipsum dolor solemit"}</p>
         <p className="text-secondary">180 followers</p>
         <div className="flex gap-4 my-4">
-          <Button variant="outline" className="w-full">
-            Follow
-          </Button>
+          {user.id !== session?.user.id ? (
+            <Button variant="outline" className="w-full">
+              Follow
+            </Button>
+          ) : null}
           {user.id === session?.user.id ? (
             <Button variant="outline" className="w-full">
               Edit Profile
@@ -39,24 +41,15 @@ const ProfileContainer = (props: PropType) => {
           ) : null}
         </div>
       </div>
-      <Tabs defaultValue={ProfileTab.THREADS}>
-        <TabsList className="grid grid-cols-3 mx-4">
-          <TabsTrigger value={ProfileTab.THREADS}>Threads</TabsTrigger>
-          <TabsTrigger value={ProfileTab.REPLIES}>Replies</TabsTrigger>
-          <TabsTrigger value={ProfileTab.REPOSTS}>Reposts</TabsTrigger>
-        </TabsList>
-        <TabsContent value={ProfileTab.THREADS}>
-          {posts?.map((item) => (
-            <PostContainer
-              post={item}
-              key={item.id}
-              onDeleteSuccess={onDeleteSuccess}
-            />
-          ))}
-        </TabsContent>
-        <TabsContent value={ProfileTab.REPLIES}></TabsContent>
-        <TabsContent value={ProfileTab.REPOSTS}></TabsContent>
-      </Tabs>
+      <div>
+        {posts?.map((item) => (
+          <PostContainer
+            post={item}
+            key={item.id}
+            onDeleteSuccess={onDeleteSuccess}
+          />
+        ))}
+      </div>
     </div>
   );
 };
