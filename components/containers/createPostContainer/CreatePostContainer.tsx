@@ -35,7 +35,7 @@ const CreatePostContainer = ({ user }: { user: UserType }) => {
             </div>
             <Textarea
               className="mt-4"
-              placeholder="Start a thread..."
+              placeholder="Share something..."
               name="body"
               rows={5}
             />

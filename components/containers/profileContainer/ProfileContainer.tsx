@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ProfileTab } from "@/constants/Profile";
 import PostContainer from "../postContainer/PostContainer";
 import { UserType } from "@/database/schema/users";
 import { PostType } from "@/database/schema/posts";
