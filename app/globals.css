@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: rgb(9 9 11) !important;
+}
+
+@layer base {
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+  h2 {
+    @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+  h5 {
+    @apply scroll-m-20 text-base font-semibold tracking-tight;
+  }
+  p {
+    @apply leading-7;
+  }
+}
+
+.text-secondary {
+  @apply text-zinc-500 text-sm;
+}
+
+.divider {
+  @apply border-b border-zinc-800;
+}
+
+.blur-background {
+  @apply backdrop-blur-[28px];
+  background-color: rgba(9, 9, 11, 0.85);
+}
+.dark {
+  color: #f7f7f7;
+}
+.dark p {
+  color: #adadad;
+}

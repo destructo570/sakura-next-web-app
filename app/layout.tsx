@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/globals/globals.css";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import NavigationContainer from "@/components/containers/navigationContainer/NavigationContainer";
+import "./globals.css";
+// import NavigationContainer from "@/components/containers/navigationContainer/NavigationContainer";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth/auth";
+import Providers from "@/app/providers";
+import NavigationContainer from "@/components/containers/navigationContainer/NavigationContainer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,18 +23,15 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} md:max-w-xl mx-auto min-h-screen relative pt-4 pb-16`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <body
+        className={`${inter.className} md:max-w-xl mx-auto min-h-screen relative pt-4 pb-16`}
+      >
+        <Providers>
           <SessionProvider session={session}>
-          {children}
-          <NavigationContainer />
+            <main className="dark">{children}</main>
+            <NavigationContainer />
           </SessionProvider>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

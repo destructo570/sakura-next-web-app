@@ -1,6 +1,7 @@
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@nextui-org/react";
 import { UserType } from "@/database/schema/users";
+import { getUserInitials } from "@/utils/helper";
 
 interface PropType {
   user: UserType;
@@ -16,10 +17,10 @@ const ProfileInfo = (props: PropType) => {
           <p>{user?.email}</p>
         </div>
         <div>
-          <Avatar className="h-16 w-16">
-            <AvatarImage src={user?.image ?? ""} alt="me" />
-            <AvatarFallback>Me</AvatarFallback>
-          </Avatar>
+        <Avatar
+              src={user?.image ?? ""}
+              name={getUserInitials(user?.name ?? "")}
+            />
         </div>
       </div>
     </div>

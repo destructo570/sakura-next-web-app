@@ -1,18 +1,16 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, Button } from "@nextui-org/react";
 import { getUserInitials } from "@/utils/helper";
 import { UserType } from "@/database/schema/users";
 
-const PeopleItem = ({user}: {user: UserType}) => {
-  
+const PeopleItem = ({ user }: { user: UserType }) => {
   return (
     <div className="flex gap-4 pt-4 w-full cursor-pointer">
       <div className="mt-1">
-        <Avatar>
-          <AvatarImage src={user.image ?? ""} alt="" />
-          <AvatarFallback>{getUserInitials(user.name ?? "")}</AvatarFallback>
-        </Avatar>
+        <Avatar
+          src={user?.image ?? ""}
+          name={getUserInitials(user?.name ?? "")}
+        />
       </div>
       <div className="flex gap-4 justify-between w-full divider pb-3">
         <div>

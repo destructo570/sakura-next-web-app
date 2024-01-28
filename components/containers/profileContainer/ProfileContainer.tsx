@@ -4,7 +4,7 @@ import ProfileInfo from "./ProfileInfo";
 import PostContainer from "../postContainer/PostContainer";
 import { UserType } from "@/database/schema/users";
 import { PostType } from "@/database/schema/posts";
-import { Button } from "@/components/ui/button";
+import { Button } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 interface PropType {
   user: UserType;
@@ -28,12 +28,12 @@ const ProfileContainer = (props: PropType) => {
         <p className="text-secondary">180 followers</p>
         <div className="flex gap-4 my-4">
           {user.id !== session?.user.id ? (
-            <Button variant="outline" className="w-full">
+            <Button variant="flat" className="w-full">
               Follow
             </Button>
           ) : null}
           {user.id === session?.user.id ? (
-            <Button variant="outline" className="w-full">
+            <Button variant="flat" className="w-full">
               Edit Profile
             </Button>
           ) : null}

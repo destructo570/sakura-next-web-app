@@ -1,4 +1,5 @@
 import { auth } from "@/auth/auth";
+import { Button } from "@nextui-org/react";
 import { redirect } from "next/navigation";
 
 const Home = async () => {
@@ -8,7 +9,9 @@ const Home = async () => {
     redirect("/home");
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
+    <div className="h-screen">
+      <Button color="primary">Hello</Button>
+    </div>
   );
 };
 

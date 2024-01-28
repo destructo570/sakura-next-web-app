@@ -4,8 +4,7 @@ import React from "react";
 import PostFooter from "./PostFooter";
 import { useAction } from "next-safe-action/hooks";
 import { deletePost } from "@/actions/post";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getUserInitials } from "@/utils/helper";
+import { Avatar } from "@nextui-org/react";import { getUserInitials } from "@/utils/helper";
 import { PostExtendedUser } from "@/types/interafce";
 
 interface PropType {
@@ -25,12 +24,10 @@ const PostContainer = ({ post, onDeleteSuccess }: PropType) => {
   return (
     <div className="p-4 divider flex gap-4">
       <div>
-        <Avatar>
-          <AvatarImage src={post.user.image ?? ""} alt="@shadcn" />
-          <AvatarFallback>
-            {getUserInitials(post.user.name ?? "")}
-          </AvatarFallback>
-        </Avatar>
+        <Avatar
+          src={post.user.image ?? ""}
+          name={getUserInitials(post.user.name ?? "")}
+        />
       </div>
       <div className="w-full">
         <div className="flex items-center justify-between">

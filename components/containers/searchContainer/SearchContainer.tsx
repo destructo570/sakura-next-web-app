@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "@nextui-org/react";
 import { useAction } from "next-safe-action/hooks";
 import { searchUser } from "@/actions/user";
 import PeopleItem from "./PeopleItem";
@@ -27,6 +27,8 @@ const SearchContainer = () => {
       <Input
         placeholder="Search for someone"
         name="search-user"
+        size="sm"
+        className="mb-4"
         onChange={debounce(onChange, 500, false)}
       />
       {Array.isArray(result?.data) && result?.data?.length ? (
