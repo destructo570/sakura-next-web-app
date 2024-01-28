@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// import NavigationContainer from "@/components/containers/navigationContainer/NavigationContainer";
-import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth/auth";
 import Providers from "@/app/providers";
 import NavigationContainer from "@/components/containers/navigationContainer/NavigationContainer";
@@ -27,10 +25,8 @@ export default async function RootLayout({
         className={`${inter.className} md:max-w-xl mx-auto min-h-screen relative pt-4 pb-16`}
       >
         <Providers>
-          <SessionProvider session={session}>
-            <main className="dark">{children}</main>
-            <NavigationContainer />
-          </SessionProvider>
+          <main className="dark">{children}</main>
+          <NavigationContainer />
         </Providers>
       </body>
     </html>
