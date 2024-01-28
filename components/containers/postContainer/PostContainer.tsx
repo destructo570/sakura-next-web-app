@@ -3,11 +3,9 @@
 import React from "react";
 import PostFooter from "./PostFooter";
 import { useAction } from "next-safe-action/hooks";
-import { PostType } from "@/database/schema/posts";
 import { deletePost } from "@/actions/post";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getUserInitials } from "@/utils/helper";
-import { UserType } from "@/database/schema/users";
 import { PostExtendedUser } from "@/types/interafce";
 
 interface PropType {
@@ -40,7 +38,7 @@ const PostContainer = ({ post, onDeleteSuccess }: PropType) => {
             <h5>{post?.user?.name ?? ""}</h5>
           </div>
           <div className="flex gap-2 mr-4 items-center">
-            <p className="text-secondary">22h</p>
+            <p className="text-secondary">{post.createdOn}</p>
           </div>
         </div>
         <p className="mt-2">{post.body ?? ""}</p>
