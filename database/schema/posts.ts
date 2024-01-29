@@ -9,4 +9,4 @@ export const posts = sqliteTable("posts", {
     createdOn: text("timestamp").default(sql`CURRENT_TIMESTAMP`),
 })
 
-export type PostType = typeof posts;
+export type PostType = typeof posts.$inferSelect;

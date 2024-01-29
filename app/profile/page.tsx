@@ -23,9 +23,19 @@ const ProfilePage = async () => {
     .from(posts)
     .where(eq(posts.userId, session.user.id))
     .innerJoin(users, eq(users.id, session.user.id));
+
+  //Todo: Some way to remove this db call and extract bio from session itself
+  const user_data = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, session!.user.id));
+
   return (
     <div className="h-full">
-      <ProfileContainer user={session.user} posts_list={post_list} />
+      <ProfileContainer
+        user={user_data?.length ? user_data[0] : session?.user}
+        posts_list={post_list}
+      />
     </div>
   );
 };

@@ -28,7 +28,14 @@ body {
   }
 }
 
-.text-secondary {
+.dark {
+  color: #f7f7f7;
+}
+.dark p {
+  color: #f7f7f7c0;
+}
+
+.dark .text-secondary {
   @apply text-zinc-500 text-sm;
 }
 
@@ -39,10 +46,4 @@ body {
 .blur-background {
   @apply backdrop-blur-[28px];
   background-color: rgba(9, 9, 11, 0.85);
-}
-.dark {
-  color: #f7f7f7;
-}
-.dark p {
-  color: #adadad;
 }
