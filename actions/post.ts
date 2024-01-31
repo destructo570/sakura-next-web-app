@@ -6,6 +6,7 @@ import { db } from "@/database";
 import { posts } from "@/database/schema/posts";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
+import { likes } from "@/database/schema/likes";
 
 //======================
 //==== Create Post =====
@@ -22,7 +23,7 @@ const _createPost = async (post: CreatePostSchema) => {
 
   if (!session) return { message: "User is not authenticated" };
 
-  if(!post.body?.trim()?.length) return;
+  if (!post.body?.trim()?.length) return;
 
   await db.insert(posts).values({
     body: post.body,
@@ -51,5 +52,25 @@ const _deletePost = async (post: DeletePostSchema) => {
     .where(and(eq(posts.userId, session.user.id), eq(posts.id, post.id)));
 };
 
+//======================
+//==== Like Post =====
+//======================
+
+const LikePostSchema = z.object({
+  postId: z.number(),
+});
+
+type LikePostSchema = z.infer<typeof LikePostSchema>;
+
+const _likePost = async (params: LikePostSchema) => {
+  const session = await auth();
+  if (!session || !session.user.id || !params.postId) return;
+
+  await db
+    .insert(likes)
+    .values({ postId: params.postId, userId: session.user.id });
+};
+
 export const createPost = action(CreatePostSchema, _createPost);
 export const deletePost = action(DeletePostSchema, _deletePost);
+export const likePost = action(LikePostSchema, _likePost);

@@ -3,22 +3,29 @@
 import React from "react";
 import PostFooter from "./PostFooter";
 import { useAction } from "next-safe-action/hooks";
-import { deletePost } from "@/actions/post";
+import { deletePost, likePost } from "@/actions/post";
 import { Avatar } from "@nextui-org/react";import { getUserInitials } from "@/utils/helper";
-import { PostExtendedUser } from "@/types/interafce";
+import { PostDataType } from "@/types/interafce";
 
 interface PropType {
-  post: PostExtendedUser;
+  post: PostDataType;
   onDeleteSuccess: (_: any, input: any) => void;
+  onLikeSuccess: (_: any, input: any) => void;
 }
 
-const PostContainer = ({ post, onDeleteSuccess }: PropType) => {
+const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess}: PropType) => {
   const { execute } = useAction(deletePost, {
     onSuccess: onDeleteSuccess,
+  });
+  const { execute: likePostAction } = useAction(likePost, {
+    onSuccess: onLikeSuccess,
   });
 
   const onDeletePost = async (postId: number) => {
     await execute({ id: postId });
+  };
+  const onLikePost = async (postId: number) => {
+    await likePostAction({ postId });
   };
 
   return (
@@ -39,7 +46,7 @@ const PostContainer = ({ post, onDeleteSuccess }: PropType) => {
           </div>
         </div>
         <p className="mt-2">{post.body ?? ""}</p>
-        <PostFooter post={post} onDeletePost={onDeletePost} />
+        <PostFooter post={post} onDeletePost={onDeletePost} onLikePost={onLikePost}/>
       </div>
     </div>
   );

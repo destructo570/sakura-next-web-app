@@ -7,10 +7,11 @@ import { PostType } from "@/database/schema/posts";
 import { Button } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import EditProfileModal from "./EditProfileModal";
+import { PostDataType } from "@/types/interafce";
 
 interface PropType {
   user: UserType;
-  posts_list: (PostType & { user: UserType })[];
+  posts_list: PostDataType[];
 }
 
 const ProfileContainer = (props: PropType) => {
@@ -21,6 +22,24 @@ const ProfileContainer = (props: PropType) => {
 
   const onDeleteSuccess = (_: any, input: any) => {
     setPosts((prev) => prev.filter((item) => item.id !== input.id));
+  };
+
+  const onLikeSuccess = (_: any, input: any) => {
+    setPosts((prev) => {
+      let new_state = [...prev];
+      new_state = new_state.map((item) => {
+        if(item.id === input.postId){
+          return {
+            ...item,
+            likes: item?.likes ? item?.likes + 1 : 0
+          }
+        }else{
+          return item;
+        }
+      })
+      
+      return new_state;
+    });
   };
 
   return (
@@ -50,6 +69,7 @@ const ProfileContainer = (props: PropType) => {
             post={item}
             key={item.id}
             onDeleteSuccess={onDeleteSuccess}
+            onLikeSuccess={onLikeSuccess}
           />
         ))}
       </div>
