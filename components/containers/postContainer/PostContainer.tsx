@@ -33,6 +33,10 @@ const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess }: PropType) => {
   const onPostClick = () => {
     router.push(`/post/${post.id}`);
   };
+  const onUserClick = (e: any) => {
+    e?.stopPropagation();
+    router.push(`/profile/${post.user.id}`);
+  };
 
   return (
     <div
@@ -43,12 +47,13 @@ const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess }: PropType) => {
         <Avatar
           src={post.user.image ?? ""}
           name={getUserInitials(post.user.name ?? "")}
+          onClick={onUserClick}
         />
       </div>
       <div className="w-full">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h5>{post?.user?.name ?? ""}</h5>
+            <h5 onClick={onUserClick}>{post?.user?.name ?? ""}</h5>
           </div>
           <div className="flex gap-2 mr-4 items-center">
             <p className="text-secondary">{post.createdOn}</p>
