@@ -45,7 +45,7 @@ const PostListContainer = (props: PropType) => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {posts?.length ? (
         renderPosts()
       ) : (
