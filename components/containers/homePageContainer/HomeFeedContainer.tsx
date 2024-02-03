@@ -1,22 +1,42 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import PostContainer from "../postContainer/PostContainer";
-import { db } from "@/database";
-import { posts } from "@/database/schema/posts";
-import { eq, desc } from "drizzle-orm";
-import { users } from "@/database/schema/users";
+import { PostDataType } from "@/types/interafce";
 
-const HomeFeedContainer = async () => {
-  const post_list = await db
-    .select({
-      id: posts.id,
-      body: posts.body,
-      createdOn: posts.createdOn,
-      userId: posts.userId,
-      user: users,
-    })
-    .from(posts)
-    .innerJoin(users, eq(users.id, posts.userId))
-    .orderBy(desc(posts.createdOn));
+const HomeFeedContainer = ({ post_list }: { post_list: PostDataType[] }) => {
+  const [posts, setPosts] = useState(post_list);
+
+  const onDeleteSuccess = (_: any, input: any) => {
+    setPosts((prev) => prev.filter((item) => item.id !== input.id));
+  };
+  const onLikeSuccess = (_: any, input: any) => {
+    setPosts((prev) => {
+      let new_state = [...prev];
+      new_state = new_state.map((item) => {
+        if (item.id === input.postId) {
+          return {
+            ...item,
+            likes: item?.likes ? item?.likes + 1 : 0,
+          };
+        } else {
+          return item;
+        }
+      });
+
+      return new_state;
+    });
+  };
+
+  const renderPosts = () => {
+    return posts?.map((item) => (
+      <PostContainer
+        post={item}
+        key={item.id}
+        onDeleteSuccess={onDeleteSuccess}
+        onLikeSuccess={onLikeSuccess}
+      />
+    ))
+  }
 
   return (
     <section className="w-full">
@@ -24,9 +44,7 @@ const HomeFeedContainer = async () => {
         <h3>Home</h3>
       </header>
       <div className="mt-4">
-        {post_list?.map((item) => (
-          <PostContainer post={item} key={item.id} />
-        ))}
+        {posts?.length ? renderPosts() : <p className="text-center mt-4">No posts found. Share something!</p>}
       </div>
     </section>
   );

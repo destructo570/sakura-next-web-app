@@ -45,6 +45,17 @@ const ProfileContainer = (props: PropType) => {
     });
   };
 
+  const renderPosts = () => {
+    return posts?.map((item) => (
+      <PostContainer
+        post={item}
+        key={item.id}
+        onDeleteSuccess={onDeleteSuccess}
+        onLikeSuccess={onLikeSuccess}
+      />
+    ));
+  };
+
   return (
     <div className="h-full">
       <div className="p-4 divider">
@@ -69,14 +80,11 @@ const ProfileContainer = (props: PropType) => {
         </div>
       </div>
       <div>
-        {posts?.map((item) => (
-          <PostContainer
-            post={item}
-            key={item.id}
-            onDeleteSuccess={onDeleteSuccess}
-            onLikeSuccess={onLikeSuccess}
-          />
-        ))}
+        {posts?.length ? (
+          renderPosts()
+        ) : (
+          <p className="text-center mt-4">No posts found. Share something!</p>
+        )}
       </div>
     </div>
   );
