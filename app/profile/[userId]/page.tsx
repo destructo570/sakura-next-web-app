@@ -1,31 +1,16 @@
 import React from "react";
 import ProfileContainer from "@/components/containers/profileContainer/ProfileContainer";
-import { db } from "@/database";
-import { posts } from "@/database/schema/posts";
-import { count, eq } from "drizzle-orm";
-import { users } from "@/database/schema/users";
-import { likes } from "@/database/schema/likes";
+
+import { fetchUserPosts } from "@/database/queries/post";
+import { fetchUserData } from "@/database/queries/user";
 
 const ProfilePage = async ({ params }: { params: { userId: string } }) => {
   const { userId } = params || {};
 
   //Todo: Some way to remove this db call and extract bio from session itself
-  const user_data = await db.select().from(users).where(eq(users.id, userId));
+  const user_data = await fetchUserData(userId);
 
-  const post_list = await db
-    .select({
-      id: posts.id,
-      body: posts.body,
-      createdOn: posts.createdOn,
-      userId: posts.userId,
-      likes: count(likes),
-      user: users,
-    })
-    .from(posts)
-    .where(eq(posts.userId, userId))
-    .leftJoin(likes, eq(posts.id, likes.postId))
-    .innerJoin(users, eq(users.id, userId))
-    .groupBy(posts.id);
+  const post_list = await fetchUserPosts(userId);
 
   return (
     <div className="h-full">

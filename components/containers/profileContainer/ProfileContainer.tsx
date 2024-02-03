@@ -6,7 +6,7 @@ import { Button } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import EditProfileModal from "./EditProfileModal";
 import { PostDataType } from "@/types/interafce";
-import PostListContainer from "./PostListContainer";
+import PostListContainer from "../postContainer/PostListContainer";
 
 interface PropType {
   user: UserType;

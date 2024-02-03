@@ -1,7 +1,7 @@
 "use client";
 import { PostDataType } from "@/types/interafce";
 import React, { useState } from "react";
-import PostContainer from "../postContainer/PostContainer";
+import PostContainer from "./PostContainer";
 
 interface PropType {
   posts_list: PostDataType[];
