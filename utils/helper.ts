@@ -29,10 +29,11 @@ export const getRedirectUrl = (callbackUrl: string) => {
   return `/api/auth/signin?callbackUrl=/${callbackUrl}`;
 };
 
-export const getInitialTabValue = (pathname: string) => {
+export const getInitialTabValue = (pathname: string) => {  
   let result;
   for (const [_, value] of Object.entries(NavTabs)) {
-    if (pathname.includes(value)) {
+    
+    if (value !== "/" && pathname.includes(value)) {
       result = value;
       break;
     }
