@@ -24,7 +24,7 @@ const HomePage = async () => {
 
   return (
     <main className="flex w-full">
-      <HomeFeedContainer post_list={post_list} />
+      <HomeFeedContainer posts_list={post_list} />
     </main>
   );
 };

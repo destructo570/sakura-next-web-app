@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
-import PostContainer from "../postContainer/PostContainer";
 import { UserType } from "@/database/schema/users";
 import { Button } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import EditProfileModal from "./EditProfileModal";
 import { PostDataType } from "@/types/interafce";
+import PostListContainer from "./PostListContainer";
 
 interface PropType {
   user: UserType;
@@ -15,46 +15,12 @@ interface PropType {
 
 const ProfileContainer = (props: PropType) => {
   const { user, posts_list } = props;
-  const [posts, setPosts] = useState(posts_list);
   const [bio, setBio] = useState(user?.bio ?? "");
   const { data: session } = useSession();
 
   if (!user) {
     return <p className="text-center">This account does not exist</p>;
   }
-
-  const onDeleteSuccess = (_: any, input: any) => {
-    setPosts((prev) => prev.filter((item) => item.id !== input.id));
-  };
-
-  const onLikeSuccess = (_: any, input: any) => {
-    setPosts((prev) => {
-      let new_state = [...prev];
-      new_state = new_state.map((item) => {
-        if (item.id === input.postId) {
-          return {
-            ...item,
-            likes: item?.likes ? item?.likes + 1 : 0,
-          };
-        } else {
-          return item;
-        }
-      });
-
-      return new_state;
-    });
-  };
-
-  const renderPosts = () => {
-    return posts?.map((item) => (
-      <PostContainer
-        post={item}
-        key={item.id}
-        onDeleteSuccess={onDeleteSuccess}
-        onLikeSuccess={onLikeSuccess}
-      />
-    ));
-  };
 
   return (
     <div className="h-full">
@@ -79,13 +45,7 @@ const ProfileContainer = (props: PropType) => {
           ) : null}
         </div>
       </div>
-      <div>
-        {posts?.length ? (
-          renderPosts()
-        ) : (
-          <p className="text-center mt-4">No posts found. Share something!</p>
-        )}
-      </div>
+      <PostListContainer posts_list={posts_list} />
     </div>
   );
 };
