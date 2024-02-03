@@ -1,11 +1,11 @@
 import { Home, Search, PlusSquare, Heart, User, MessageSquareText } from "lucide-react";
 
 export enum NavTabs {
-  HOME="home",
-  SEARCH="search",
-  NEW_POST="create-post",
-  MESSAGE="message",
-  PROFILE="profile"
+  HOME="/home",
+  SEARCH="/search",
+  NEW_POST="/create-post",
+  MESSAGE="/message",
+  PROFILE="/profile"
 }
 
 export const navigationRoutes = [
