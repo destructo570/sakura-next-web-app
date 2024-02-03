@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
 import PostContainer from "../postContainer/PostContainer";
 import { UserType } from "@/database/schema/users";
-import { PostType } from "@/database/schema/posts";
 import { Button } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import EditProfileModal from "./EditProfileModal";
@@ -20,6 +19,10 @@ const ProfileContainer = (props: PropType) => {
   const [bio, setBio] = useState(user?.bio ?? "");
   const { data: session } = useSession();
 
+  if (!user) {
+    return <p className="text-center">This account does not exist</p>;
+  }
+
   const onDeleteSuccess = (_: any, input: any) => {
     setPosts((prev) => prev.filter((item) => item.id !== input.id));
   };
@@ -28,16 +31,16 @@ const ProfileContainer = (props: PropType) => {
     setPosts((prev) => {
       let new_state = [...prev];
       new_state = new_state.map((item) => {
-        if(item.id === input.postId){
+        if (item.id === input.postId) {
           return {
             ...item,
-            likes: item?.likes ? item?.likes + 1 : 0
-          }
-        }else{
+            likes: item?.likes ? item?.likes + 1 : 0,
+          };
+        } else {
           return item;
         }
-      })
-      
+      });
+
       return new_state;
     });
   };
@@ -49,7 +52,9 @@ const ProfileContainer = (props: PropType) => {
         {bio ? (
           <p className="py-4">{bio}</p>
         ) : (
-          <p className="py-4 text-secondary">Write something about yourself...</p>
+          <p className="py-4 text-secondary">
+            Write something about yourself...
+          </p>
         )}
         <p className="text-secondary">180 followers</p>
         <div className="flex gap-4 my-4">

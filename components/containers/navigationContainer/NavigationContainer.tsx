@@ -1,14 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { navigationRoutes } from "@/constants/Navigation";
+import { NavTabs, navigationRoutes } from "@/constants/Navigation";
 import { usePathname, useRouter } from "next/navigation";
 import { getInitialTabValue } from "@/utils/helper";
 import { Tab, Tabs } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 const NavigationContainer = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const session = useSession();
 
   const [value, setValue] = useState<string>(() =>
     getInitialTabValue(pathname)
@@ -36,7 +38,7 @@ const NavigationContainer = () => {
   const onToggleChange = (value: string) => {
     if (value) {
       setValue(value);
-      router.push(value);
+      router.push(value === NavTabs.PROFILE ? `/profile/${session.data!.user.id}` : value);
     }
   };
 
