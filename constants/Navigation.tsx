@@ -1,7 +1,7 @@
 import { Home, Search, PlusSquare, Heart, User, MessageSquareText } from "lucide-react";
 
 export enum NavTabs {
-  HOME="/home",
+  HOME="/",
   SEARCH="/search",
   NEW_POST="/create-post",
   MESSAGE="/message",
