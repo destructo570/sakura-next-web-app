@@ -6,6 +6,7 @@ import { useAction } from "next-safe-action/hooks";
 import { deletePost, likePost } from "@/actions/post";
 import { Avatar } from "@nextui-org/react";import { getUserInitials } from "@/utils/helper";
 import { PostDataType } from "@/types/interafce";
+import { useRouter } from "next/navigation";
 
 interface PropType {
   post: PostDataType;
@@ -14,6 +15,7 @@ interface PropType {
 }
 
 const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess}: PropType) => {
+  const router = useRouter();
   const { execute } = useAction(deletePost, {
     onSuccess: onDeleteSuccess,
   });
@@ -27,9 +29,12 @@ const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess}: PropType) => {
   const onLikePost = async (postId: number) => {
     await likePostAction({ postId });
   };
+  const onPostClick = ()=>{
+    router.push(`/post/${post.id}`)
+  }
 
   return (
-    <div className="p-4 divider flex gap-4">
+    <div className="p-4 divider flex gap-4 hover:bg-zinc-900/30 hover:cursor-pointer" onClick={onPostClick}>
       <div>
         <Avatar
           src={post.user.image ?? ""}
