@@ -13,9 +13,10 @@ interface PropType {
   post: PostDataType;
   onDeleteSuccess: (_: any, input: any) => void;
   onLikeSuccess: (_: any, input: any) => void;
+  is_comment?: boolean;
 }
 
-const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess }: PropType) => {
+const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess, is_comment=false }: PropType) => {
   const router = useRouter();
   const { execute } = useAction(deletePost, {
     onSuccess: onDeleteSuccess,
@@ -31,6 +32,7 @@ const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess }: PropType) => {
     await likePostAction({ postId });
   };
   const onPostClick = () => {
+    if(is_comment) return;
     router.push(`/post/${post.id}`);
   };
   const onUserClick = (e: any) => {
@@ -60,11 +62,11 @@ const PostContainer = ({ post, onDeleteSuccess, onLikeSuccess }: PropType) => {
           </div>
         </div>
         <p className="mt-2">{post.body ?? ""}</p>
-        <PostFooter
+        {!is_comment ? <PostFooter
           post={post}
           onDeletePost={onDeletePost}
           onLikePost={onLikePost}
-        />
+        /> : null}
       </div>
     </div>
   );
