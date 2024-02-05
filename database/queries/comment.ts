@@ -1,22 +1,19 @@
-import { UserType, users } from "../schema/users";
-import { CommentType, comments } from "../schema/comments";
+import { users } from "../schema/users";
 import { db } from "..";
-import { eq } from "drizzle-orm";
-
-// export type CommentWithAuthor = CommentType & { user: UserType };
+import { and, eq } from "drizzle-orm";
+import { posts } from "../schema/posts";
 
 export const fetchCommentsByPostId = async (postId: number): Promise<any> => {
   return await db
     .select({
-        id: comments.id,
-        userId: comments.userId,
-        postId: comments.postId,
-        parentId: comments.parentId,
-        body: comments.body,
-        createdOn: comments.createdOn,
+        id: posts.id,
+        userId: posts.userId,
+        parentId: posts.parentId,
+        body: posts.body,
+        createdOn: posts.createdOn,
         user: users
     })
-    .from(comments)
-    .where(eq(comments.postId, postId))
-    .innerJoin(users, eq(users.id, comments.userId));
+    .from(posts)
+    .where(and(eq(posts.parentId, postId), eq(posts.type, 'comment')))
+    .innerJoin(users, eq(users.id, posts.userId));
 };

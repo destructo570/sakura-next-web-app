@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import PostContainer from "@/components/containers/postContainer/PostContainer";
 import { PostDataType } from "@/types/interafce";
 import { useRouter } from "next/navigation";
-import CommentsList from "@/components/containers/commentContainer/CommentsList";
 import PostListContainer from "@/components/containers/postContainer/PostListContainer";
 
 const Post = ({ post, comment_list }: { post: PostDataType, comment_list: any[] }) => {
@@ -30,8 +29,7 @@ const Post = ({ post, comment_list }: { post: PostDataType, comment_list: any[] 
         onLikeSuccess={onLikeSuccess}
         onDeleteSuccess={onDeleteSuccess}
       />
-      {/* <CommentsList comment_list={comment_list}/> */}
-      <PostListContainer posts_list={comment_list} is_comment/>
+      <PostListContainer posts_list={comment_list} />
     </div>
   );
 };

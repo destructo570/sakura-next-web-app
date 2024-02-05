@@ -1,4 +1,4 @@
 import { PostType } from "@/database/schema/posts";
 import { UserType } from "@/database/schema/users";
 
-export type PostDataType = (PostType & { user: UserType, likes: number | null, comments: number | null });
+export type PostDataType = (PostType & { user: UserType, likes: number | null });

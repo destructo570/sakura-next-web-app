@@ -11,17 +11,15 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import { useAction } from "next-safe-action/hooks";
-import { updateUserData } from "@/actions/user";
 import { toast } from "sonner";
 import { MessageCircle } from "lucide-react";
 import { addCommentOnPost } from "@/actions/post";
 
 interface PropType {
-  postId: number;
   parentId?: number | null;
 }
 
-const CommentModal = ({ postId, parentId=null }: PropType) => {
+const CommentModal = ({ parentId=null }: PropType) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [value, setValue] = useState("");
   const { execute } = useAction(addCommentOnPost, {
@@ -29,21 +27,16 @@ const CommentModal = ({ postId, parentId=null }: PropType) => {
       onCloseHandler();
     },
     onError: (err) => {
-      console.log(err);
-
       toast.error(err?.serverError ?? "Something went wrong!");
     },
   });
 
   const onSaveHandler = async () => {
     if (!value?.length) return;
-    console.log(postId);
-    console.log(parentId);
-    
+
     await execute({
       body: value,
-      postId,
-      parentId,
+      parentId: parentId,
     });
   };
 

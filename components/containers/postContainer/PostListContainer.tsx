@@ -5,11 +5,10 @@ import PostContainer from "./PostContainer";
 
 interface PropType {
   posts_list: PostDataType[];
-  is_comment?: boolean;
 }
 
 const PostListContainer = (props: PropType) => {
-  const { posts_list, is_comment=false } = props;
+  const { posts_list } = props;
   const [posts, setPosts] = useState(posts_list);
 
   const onDeleteSuccess = (_: any, input: any) => {
@@ -41,7 +40,6 @@ const PostListContainer = (props: PropType) => {
         key={item.id}
         onDeleteSuccess={onDeleteSuccess}
         onLikeSuccess={onLikeSuccess}
-        is_comment={is_comment}
       />
     ));
   };

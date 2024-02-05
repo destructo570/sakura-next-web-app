@@ -7,7 +7,6 @@ import { posts } from "@/database/schema/posts";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import { likes } from "@/database/schema/likes";
-import { comments } from "@/database/schema/comments";
 
 //======================
 //==== Create Post =====
@@ -77,25 +76,23 @@ const _likePost = async (params: LikePostSchema) => {
 //======================
 
 const CommentSchema = z.object({
-  postId: z.number(),
   body: z.string(),
-  parentId: z.number().nullable(),
+  parentId: z.number().nullable()
 });
 
 type CommentSchema = z.infer<typeof CommentSchema>;
 
 const _commentPost = async (params: CommentSchema) => {
-  console.log("params", params);
   
-  const { postId, body, parentId = null } = params;
+  const { parentId, body } = params;
   const session = await auth();
-  if (!session || !session.user.id || !params.postId) return;
+  if (!session || !session.user.id) return;
 
-  await db.insert(comments).values({
-    postId,
+  await db.insert(posts).values({
     body,
+    parentId,
     userId:session.user.id,
-    parentId: parentId,
+    type: "comment"
   });
 };
 
