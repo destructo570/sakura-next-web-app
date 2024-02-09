@@ -5,7 +5,7 @@ import PostFooter from "./PostFooter";
 import { useAction } from "next-safe-action/hooks";
 import { deletePost, likePost } from "@/actions/post";
 import { Avatar } from "@nextui-org/react";
-import { getUserInitials } from "@/utils/helper";
+import { getFormattedDurationString, getUserInitials } from "@/utils/helper";
 import { PostDataType } from "@/types/interafce";
 import { useRouter } from "next/navigation";
 
@@ -60,7 +60,7 @@ const PostContainer = ({
             <h5 onClick={onUserClick}>{post?.user?.name ?? ""}</h5>
           </div>
           <div className="flex gap-2 mr-4 items-center">
-            <p className="text-secondary">{post.createdOn}</p>
+            <p className="text-secondary">{getFormattedDurationString(post.createdOn ?? "")}</p>
           </div>
         </div>
         <p className="mt-2">{post.body ?? ""}</p>
