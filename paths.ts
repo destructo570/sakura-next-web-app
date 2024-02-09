@@ -2,9 +2,6 @@ const paths = {
     home(){
         return `/`
     },
-    homeFeed(){
-        return `/home`
-    },
     showPost(postId: string){
         return `/posts/${postId}`
     },

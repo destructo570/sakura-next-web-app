@@ -30,7 +30,7 @@ const _createPost = async (post: CreatePostSchema) => {
     userId: session.user.id,
   });
 
-  redirect("/home");
+  redirect("/");
 };
 
 //======================
