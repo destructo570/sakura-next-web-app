@@ -28,6 +28,7 @@ const SearchContainer = () => {
         placeholder="Search for someone"
         name="search-user"
         size="sm"
+        radius="sm"
         className="mb-4"
         onChange={debounce(onChange, 500, false)}
       />

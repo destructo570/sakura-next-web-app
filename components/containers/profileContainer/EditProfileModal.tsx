@@ -46,10 +46,10 @@ const EditProfileModal = ({ userBio, setBio }: PropType) => {
 
   return (
     <>
-      <Button onPress={onOpen} variant="flat" className="w-full">
+      <Button onPress={onOpen} variant="flat" className="w-full" radius="sm">
         Edit Profile
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark" radius="sm">
         <ModalContent>
           {() => (
             <>
@@ -66,10 +66,10 @@ const EditProfileModal = ({ userBio, setBio }: PropType) => {
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onCloseHandler}>
+                <Button color="danger" variant="light" onPress={onCloseHandler} radius="sm" size="sm">
                   Close
                 </Button>
-                <Button color="primary" onPress={onSaveHandler}>
+                <Button color="primary" onPress={onSaveHandler} radius="sm" size="sm">
                   Save
                 </Button>
               </ModalFooter>
