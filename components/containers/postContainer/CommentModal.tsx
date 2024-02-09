@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -47,9 +47,6 @@ const CommentModal = ({ parentId=null }: PropType) => {
 
   return (
     <>
-      {/* <Button onPress={onOpen} variant="flat" className="w-full">
-        Edit Profile
-      </Button> */}
       <MessageCircle onClick={onOpen} size={20} className="cursor-pointer" />
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark" radius="sm">
