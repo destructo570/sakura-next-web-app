@@ -4,12 +4,12 @@ An open-source social media web app built with Next.js 14.
 
 ### Features to be implemented
 
-- [ ] User authentication
-- [ ] User profile management
-- [ ] Database on turso
-- [ ] Manage database using Drizzle
-- [ ] Validation using zod
-- [ ] Creating posts
+- [x] User authentication
+- [x] User profile management
+- [x] Database on turso
+- [x] Manage database using Drizzle
+- [x] Validation using zod
+- [x] Creating posts
 - [ ] Follow and connect with other people
 - [ ] Direct messaging
 
