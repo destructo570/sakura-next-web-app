@@ -1,5 +1,7 @@
 import { NavTabs } from "@/constants/Navigation";
 import dayjs from "dayjs";
+var utc = require('dayjs/plugin/utc')
+dayjs.extend(utc)
 
 export const getUserInitials = (name: string) => {
   const name_arr = name.split(" ");
@@ -42,20 +44,15 @@ export const getInitialTabValue = (pathname: string) => {
 };
 
 export const getFormattedDurationString = (timeStamp: string) => {
-  let formatted_str = dayjs(timeStamp).format("DD MMM YYYY");
-  const date1 = dayjs(timeStamp);
-  const date2 = dayjs();
+  let formatted_str = dayjs(timeStamp).utc().format("DD MMM YYYY");
+  const date1 = dayjs(timeStamp).utc();
+  const date2 = dayjs().utc();
   const minute_diff = date2.diff(date1, "minute");
-  const hour_diff = date2.diff(date1, "hour");
-  console.log("minute_diff", minute_diff);
-  console.log("hour_diff", hour_diff);
-  console.log("formatted_str", formatted_str);
-  console.log("formatted_str", date1);
-  console.log("formatted_str", date2);
+  const hour_diff = date2.diff(date1, "hour");  
 
-  if (minute_diff <= 59) {
+  if (minute_diff >= 0 && minute_diff <= 59) {
     formatted_str = `${minute_diff}m ago`;
-  } else if (hour_diff <= 6) {
+  } else if (hour_diff >= 1 && hour_diff <= 6) {
     formatted_str = `${hour_diff}h ago`;
   }
 

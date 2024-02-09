@@ -7,6 +7,9 @@ import { posts } from "@/database/schema/posts";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import { likes } from "@/database/schema/likes";
+import dayjs from "dayjs";
+var utc = require('dayjs/plugin/utc')
+dayjs.extend(utc)
 
 //======================
 //==== Create Post =====
@@ -28,6 +31,7 @@ const _createPost = async (post: CreatePostSchema) => {
   await db.insert(posts).values({
     body: post.body,
     userId: session.user.id,
+    createdOn: dayjs.utc().format(),
   });
 
   redirect("/");
