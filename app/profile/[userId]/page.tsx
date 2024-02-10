@@ -11,7 +11,7 @@ const ProfilePage = async ({ params }: { params: { userId: string } }) => {
   const user_data = await fetchUserData(userId);
 
   const post_list = await fetchUserPosts(userId);
-
+    
   return (
     <div className="h-full">
       <ProfileContainer user={user_data[0]} posts_list={post_list} />

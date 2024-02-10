@@ -1,7 +1,6 @@
 import React from "react";
 import Post from "./Post";
-import { fetchCommentsByPostId } from "@/database/queries/comment";
-import { fetchPost } from "@/database/queries/post";
+import { fetchCommentsByPostId, fetchPost } from "@/database/queries/post";
 
 const Page = async ({ params }: { params: { postId: string } }) => {
   const { postId } = params || {};
