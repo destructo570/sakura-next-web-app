@@ -13,7 +13,7 @@ import {
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 import { MessageCircle } from "lucide-react";
-import { addCommentOnPost } from "@/actions/post";
+import { createPost } from "@/actions/post";
 
 interface PropType {
   parentId?: number | null;
@@ -22,7 +22,7 @@ interface PropType {
 const CommentModal = ({ parentId=null }: PropType) => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [value, setValue] = useState("");
-  const { execute } = useAction(addCommentOnPost, {
+  const { execute } = useAction(createPost, {
     onSuccess: (_: any, input: any) => {
       onCloseHandler();
     },
@@ -37,6 +37,7 @@ const CommentModal = ({ parentId=null }: PropType) => {
     await execute({
       body: value,
       parentId: parentId,
+      type: 'comment'
     });
   };
 

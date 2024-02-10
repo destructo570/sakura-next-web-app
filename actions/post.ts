@@ -8,8 +8,8 @@ import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import { likes } from "@/database/schema/likes";
 import dayjs from "dayjs";
-var utc = require('dayjs/plugin/utc')
-dayjs.extend(utc)
+var utc = require("dayjs/plugin/utc");
+dayjs.extend(utc);
 
 //======================
 //==== Create Post =====
@@ -17,19 +17,24 @@ dayjs.extend(utc)
 
 const CreatePostSchema = z.object({
   body: z.string(),
+  parentId: z.number().nullable().optional(),
+  type: z.string().optional(),
 });
 
 type CreatePostSchema = z.infer<typeof CreatePostSchema>;
 
-const _createPost = async (post: CreatePostSchema) => {
+const _createPost = async (params: CreatePostSchema) => {
   const session = await auth();
+  const { body, parentId = null, type = "post" } = params;
 
   if (!session) return { message: "User is not authenticated" };
 
-  if (!post.body?.trim()?.length) return;
+  if (!params.body?.trim()?.length) return;
 
   await db.insert(posts).values({
-    body: post.body,
+    parentId,
+    type,
+    body: body,
     userId: session.user.id,
     createdOn: dayjs.utc().format(),
   });
@@ -75,32 +80,6 @@ const _likePost = async (params: LikePostSchema) => {
     .values({ postId: params.postId, userId: session.user.id });
 };
 
-//======================
-//==== Add Comment =====
-//======================
-
-const CommentSchema = z.object({
-  body: z.string(),
-  parentId: z.number().nullable()
-});
-
-type CommentSchema = z.infer<typeof CommentSchema>;
-
-const _commentPost = async (params: CommentSchema) => {
-  
-  const { parentId, body } = params;
-  const session = await auth();
-  if (!session || !session.user.id) return;
-
-  await db.insert(posts).values({
-    body,
-    parentId,
-    userId:session.user.id,
-    type: "comment"
-  });
-};
-
-export const addCommentOnPost = action(CommentSchema, _commentPost);
 export const createPost = action(CreatePostSchema, _createPost);
 export const deletePost = action(DeletePostSchema, _deletePost);
 export const likePost = action(LikePostSchema, _likePost);
