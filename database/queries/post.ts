@@ -26,7 +26,7 @@ export const fetchTopPosts = async (): Promise<PostDataType[]> => {
       createdOn: posts.createdOn,
       userId: posts.userId,
       user: users,
-      likes: count(likes),
+      likes: count(likes.id),
       comments: comments_count.comment_count,
     })
     .from(posts)
@@ -46,7 +46,7 @@ export const fetchUserPosts = async (
       body: posts.body,
       createdOn: posts.createdOn,
       userId: posts.userId,
-      likes: count(likes),
+      likes: count(likes.id),
       comments: comments_count.comment_count,
       user: users,
     })
@@ -66,7 +66,7 @@ export const fetchPost = async (postId: number): Promise<PostDataType[]> => {
       body: posts.body,
       createdOn: posts.createdOn,
       userId: posts.userId,
-      likes: count(likes),
+      likes: count(likes.id),
       comments: comments_count.comment_count,
       user: users,
     })
@@ -87,7 +87,7 @@ export const fetchCommentsByPostId = async (
       userId: posts.userId,
       parentId: posts.parentId,
       body: posts.body,
-      likes: count(likes),
+      likes: count(likes.id),
       comments: comments_count.comment_count,
       createdOn: posts.createdOn,
       user: users,
