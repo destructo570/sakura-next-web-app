@@ -42,14 +42,14 @@ export const fetchUserPosts = async (
     .groupBy(posts.id);
 };
 
-export const fetchPost = async (postId: number): Promise<PostDataType[]> => {
+export const fetchPost = async (postId: number): Promise<PostDataType[]> => {  
   return await db
     .select({
       id: posts.id,
       body: posts.body,
       createdOn: posts.createdOn,
       userId: posts.userId,
-      likes: count(likes),
+      likes: count(likes.id),
       user: users,
     })
     .from(posts)
