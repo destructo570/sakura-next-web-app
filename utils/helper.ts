@@ -51,9 +51,9 @@ export const getFormattedDurationString = (timeStamp: string) => {
   const hour_diff = date2.diff(date1, "hour");  
 
   if (minute_diff >= 0 && minute_diff <= 59) {
-    formatted_str = `${minute_diff}m ago`;
+    formatted_str = `${minute_diff}m`;
   } else if (hour_diff >= 1 && hour_diff <= 6) {
-    formatted_str = `${hour_diff}h ago`;
+    formatted_str = `${hour_diff}h`;
   }
 
   return formatted_str;
