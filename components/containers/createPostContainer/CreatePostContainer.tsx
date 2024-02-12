@@ -34,6 +34,7 @@ const CreatePostContainer = ({ user }: { user: UserType }) => {
               placeholder="Share something..."
               name="body"
               rows={5}
+              radius="sm"
             />
           </div>
         </div>
