@@ -39,10 +39,10 @@ const CreatePostContainer = ({ user }: { user: UserType }) => {
         </div>
       </div>
       <div className="flex gap-4 w-full justify-end mt-4">
-        <Button radius="sm" variant="light" onClick={() => router.push("/")}>
+        <Button radius="sm" variant="light" onClick={() => router.push("/")} size="sm">
           Cancel
         </Button>
-        <Button radius="sm" color="primary" type="submit">Post</Button>
+        <Button radius="sm" color="primary" type="submit" size="sm">Post</Button>
       </div>
     </form>
   );
