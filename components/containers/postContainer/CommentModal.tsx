@@ -46,11 +46,16 @@ const CommentModal = ({ parentId=null }: PropType) => {
     onClose();
   };
 
+  const onOpenCommentModal = (e: any)=>{
+    e?.stopPropagation();
+    onOpen();
+  }
+
   return (
     <>
-      <MessageCircle onClick={onOpen} size={20} className="cursor-pointer" />
+      <MessageCircle onClick={onOpenCommentModal} size={20} className="cursor-pointer" />
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark" radius="sm">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} className="dark" radius="sm" onClick={()=>{}}>
         <ModalContent>
           {() => (
             <>
