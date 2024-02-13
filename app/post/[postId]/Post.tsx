@@ -29,7 +29,7 @@ const Post = ({ post, comment_list }: { post: PostDataType, comment_list: any[] 
         onLikeSuccess={onLikeSuccess}
         onDeleteSuccess={onDeleteSuccess}
       />
-      <PostListContainer posts_list={comment_list} is_comment_list={true}/>
+      <PostListContainer posts_list={comment_list} hide_empty_state={true}/>
     </div>
   );
 };

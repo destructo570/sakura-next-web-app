@@ -5,11 +5,11 @@ import PostContainer from "./PostContainer";
 
 interface PropType {
   posts_list: PostDataType[];
-  is_comment_list?: boolean;
+  hide_empty_state?: boolean;
 }
 
 const PostListContainer = (props: PropType) => {
-  const { posts_list, is_comment_list = false } = props;
+  const { posts_list, hide_empty_state = false } = props;
   const [posts, setPosts] = useState(posts_list);
 
   const onDeleteSuccess = (_: any, input: any) => {
@@ -49,7 +49,7 @@ const PostListContainer = (props: PropType) => {
     <div className="w-full">
       {posts?.length ? (
         renderPosts()
-      ) : is_comment_list ? null : (
+      ) : hide_empty_state ? null : (
         <p className="text-center mt-4">No posts found. Share something!</p>
       )}
     </div>
