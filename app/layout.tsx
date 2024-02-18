@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Sakura",
-  description: "Social web app built with Next.js 14",
+  description: "Social media app built with Next.js 14",
 };
 
 export default async function RootLayout({

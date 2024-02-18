@@ -1,6 +1,6 @@
-# 🌸 Sakura - Social media web app
+# 🌸 Sakura - Social media app
 
-An open-source social media web app built with Next.js 14.
+An open-source social media app built with Next.js 14.
 
 ### Features to be implemented
 
