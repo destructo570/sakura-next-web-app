@@ -19,4 +19,4 @@ An open-source social media app built with Next.js 14.
 - Turso for SQLite database
 - Zod for validation
 - TypeScript
-- Shadcn UI
+- Next UI
