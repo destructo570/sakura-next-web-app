@@ -11,7 +11,7 @@ An open-source social media web app built with Next.js 14.
 - [x] Validation using zod
 - [x] Creating posts
 - [ ] Follow and connect with other people
-- [ ] Direct messaging
+
 
 ### Tech Stack
 - Next.js 14
